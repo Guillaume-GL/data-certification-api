@@ -4,7 +4,7 @@ import joblib as joblib
 
 app = FastAPI()
 
-model = joblib.load('../model.pickle')
+model = joblib.load('model.joblib')
 
 # define a root `/` endpoint
 @app.get("/")
@@ -12,39 +12,7 @@ def index():
     return {"ok": True}
 
 @app.get("/predict")
-def predict(acousticness,
-            danceability,
-            duration_ms,
-            energy,
-            explicit,
-            id,
-            instrumentalness,
-            key,
-            liveness,
-            loudness,
-            mode,
-            name,
-            release_date,
-            speechiness,
-            tempo,
-            valence,
-            artis):
-  return model.predict(acousticness,
-            danceability,
-            duration_ms,
-            energy,
-            explicit,
-            id,
-            instrumentalness,
-            key,
-            liveness,
-            loudness,
-            mode,
-            name,
-            release_date,
-            speechiness,
-            tempo,
-            valence,
-            artis)
+def predict(params):
+  return params
 
 # Implement a /predict endpoint
